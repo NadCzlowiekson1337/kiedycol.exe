@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="//cloud.typography.com/6804272/781004/css/fonts.css">
+	<link rel="stylesheet" href="style.css">
+	<title>Kiedy CoL?</title>
+</head>
+<body id="body">
+
+	<div id="start">
+		<button class="btn" onclick="start()">Klinkij aby zobaczyć kiedy start!</button>
+	</div>
+
+	<div class="home-area" id="particles-js"></div>
+
+	<div class="logo-holder">
+		<img class="logo" src="logo.png">
+	</div>
+
+	<div class="main">
+		<h1 id="howold"></h1>
+		<h3 id="days"></h3>
+	</div>
+
+	<div class="chat">
+		<img id="img1" src="img1.png">
+		<br>
+		<img id="img2" src="img2.png">
+	</div>
+
+	<audio id="audio" src="rundkiwparostatku.mp3" loop></audio>
+
+	<script>
+	
+    var release = 1595325600 * 1000;
+    var now = new Date();
+    var diff = Math.round((now.getTime() - release) / (1000 * 60 * 60 * 24));
+    
+    var years = Math.floor(diff / 365.256363004);
+    var days = Math.floor(diff % 365.256363004);
+    var months = Math.floor(days / 30.438);
+    days = days % 30;
+    months = months + " miesięcy";
+    if (days > 0) {
+        days = " i " + days + " dni";
+    } else {
+        days = "";
+    }
+		
+		document.getElementById("howold").innerText = "City of Lights jest tworzone już " + months + days;
+		document.getElementById("days").innerText = "(" + diff + " dni)";
+
+		function show() {
+			setTimeout(() => {
+				document.getElementById("body").style.opacity = 1;
+			}, 500);
+		}
+
+		show();
+
+		function start() {
+			document.getElementById("start").style.opacity = 0;
+			document.getElementById("audio").play();
+			setTimeout(() => {
+				document.getElementById("img1").style.opacity = 1;
+				new Audio("discord-notification.mp3").play();
+				setTimeout(() => {
+					document.getElementById("img2").style.opacity = 1;
+					new Audio("discord-notification.mp3").play();
+				}, 3500);
+			}, 3500);
+		}
+
+	</script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/particles.js"></script>
+	<script src="js/app.js"></script>
+	
+</body>
+</html>
